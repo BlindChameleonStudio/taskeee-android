@@ -94,6 +94,7 @@ public class TaskHome extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
+            overdueList.clear();
             todayList.clear();
             tomorrowList.clear();
             upcomingList.clear();
@@ -101,6 +102,11 @@ public class TaskHome extends AppCompatActivity {
 
         protected String doInBackground(String... args) {
             String xml = "";
+
+            /*===== OVERDUE =====*/
+            Cursor overdue = mydb.getDataOverdue();
+            loadDataList(overdue, overdueList);
+            /*===== OVERDUE =====*/
 
             /* ===== TODAY ========*/
             Cursor today = mydb.getDataToday();
@@ -123,11 +129,18 @@ public class TaskHome extends AppCompatActivity {
         @Override
         protected void onPostExecute(String xml) {
 
-
+            loadListView(taskListOverdue,overdueList);
             loadListView(taskListToday,todayList);
             loadListView(taskListTomorrow,tomorrowList);
             loadListView(taskListUpcoming,upcomingList);
 
+
+            if(overdueList.size()>0)
+            {
+                overdueText.setVisibility(View.VISIBLE);
+            }else{
+                overdueText.setVisibility(View.GONE);
+            }
 
             if(todayList.size()>0)
             {
