@@ -80,7 +80,11 @@ public class TaskDBHelper extends SQLiteOpenHelper {
     }
 
     //TODO add function to delete a task
+    //database.delete("tablename", "column_name=?", new String[] {Integer.toString(id)});
+    public boolean deleteContact (String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+    }
 
 
     public Cursor getData(){

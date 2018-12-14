@@ -25,10 +25,11 @@ public class TaskHome extends AppCompatActivity {
 
     Activity activity;
     TaskDBHelper mydb;
-    NoScrollListView taskListToday, taskListTomorrow, taskListUpcoming;
+    NoScrollListView taskListOverdue, taskListToday, taskListTomorrow, taskListUpcoming;
     NestedScrollView scrollView;
     ProgressBar loader;
-    TextView todayText,tomorrowText,upcomingText;
+    TextView overdueText,todayText,tomorrowText,upcomingText;
+    ArrayList<HashMap<String, String>> overdueList = new ArrayList<HashMap<String, String>>();
     ArrayList<HashMap<String, String>> todayList = new ArrayList<HashMap<String, String>>();
     ArrayList<HashMap<String, String>> tomorrowList = new ArrayList<HashMap<String, String>>();
     ArrayList<HashMap<String, String>> upcomingList = new ArrayList<HashMap<String, String>>();
@@ -47,10 +48,12 @@ public class TaskHome extends AppCompatActivity {
         mydb = new TaskDBHelper(activity);
         scrollView = (NestedScrollView) findViewById(R.id.scrollView);
         loader = (ProgressBar) findViewById(R.id.loader);
+        taskListOverdue = (NoScrollListView) findViewById(R.id.taskListOverdue);
         taskListToday = (NoScrollListView) findViewById(R.id.taskListToday);
         taskListTomorrow = (NoScrollListView) findViewById(R.id.taskListTomorrow);
         taskListUpcoming = (NoScrollListView) findViewById(R.id.taskListUpcoming);
 
+        overdueText = (TextView) findViewById(R.id.overdueText);
         todayText = (TextView) findViewById(R.id.todayText);
         tomorrowText = (TextView) findViewById(R.id.tomorrowText);
         upcomingText = (TextView) findViewById(R.id.upcomingText);
