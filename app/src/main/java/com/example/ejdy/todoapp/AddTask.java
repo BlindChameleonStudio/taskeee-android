@@ -57,7 +57,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         }
     }
 
-
     public void init_update() {
         id = intent.getStringExtra("id");
         TextView toolbar_task_add_title = (TextView) findViewById(R.id.toolbar_task_add_title);
@@ -130,6 +129,12 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void deleteTask(View v) {
+        mydb.deleteContact(id);
+        Toast.makeText(getApplicationContext(), "Task Deleted.", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
