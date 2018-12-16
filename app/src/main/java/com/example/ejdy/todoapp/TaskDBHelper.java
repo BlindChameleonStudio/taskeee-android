@@ -11,7 +11,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by Ferdousur Rahman Sarker on 3/19/2018.
+ * base code created by Ferdousur Rahman Sarker on 3/19/2018.
+ * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
 public class TaskDBHelper extends SQLiteOpenHelper {
@@ -19,30 +20,23 @@ public class TaskDBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "ToDoDBHelper.db";
     public static final String CONTACTS_TABLE_NAME = "todo";
 
-    public TaskDBHelper(Context context)
-    {
+    public TaskDBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
-
         db.execSQL(
                 "CREATE TABLE "+CONTACTS_TABLE_NAME +
                         "(id INTEGER PRIMARY KEY, task TEXT, dateStr INTEGER)"
         );
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS "+CONTACTS_TABLE_NAME);
         onCreate(db);
     }
-
-
 
     private long getDate(String day) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
@@ -54,10 +48,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         return date.getTime();
     }
 
-
-
-    public boolean insertContact  (String task, String dateStr)
-    {
+    public boolean insertContact  (String task, String dateStr) {
         Date date;
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -67,8 +58,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean updateContact (String id, String task, String dateStr)
-    {
+    public boolean updateContact (String id, String task, String dateStr) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -79,8 +69,6 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    //TODO add function to delete a task
-    //database.delete("tablename", "column_name=?", new String[] {Integer.toString(id)});
     public  boolean deleteContact (String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(CONTACTS_TABLE_NAME,"id = ?", new String[] { id });
@@ -91,14 +79,12 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+" order by id desc", null);
         return res;
-
     }
 
     public Cursor getDataSpecific(String id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+" WHERE id = '"+id+"' order by id desc", null);
         return res;
-
     }
 
     public Cursor getDataOverdue(){
@@ -114,16 +100,13 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
                 " WHERE date(datetime(dateStr / 1000 , 'unixepoch', 'localtime')) = date('now', 'localtime') order by id desc", null);
         return res;
-
     }
-
 
     public Cursor getDataTomorrow(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
                 " WHERE date(datetime(dateStr / 1000 , 'unixepoch', 'localtime')) = date('now', '+1 day', 'localtime')  order by id desc", null);
         return res;
-
     }
 
 
@@ -132,8 +115,5 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
                 " WHERE date(datetime(dateStr / 1000 , 'unixepoch', 'localtime')) > date('now', '+1 day', 'localtime') order by id desc", null);
         return res;
-
     }
-
-
 }

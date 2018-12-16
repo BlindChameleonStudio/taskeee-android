@@ -5,18 +5,25 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+/**
+ * base code created by Ferdousur Rahman Sarker on 3/19/2018.
+ */
+
 // creates a list view with scrolling disabled
 public class NoScrollListView extends ListView {
 
     public NoScrollListView(Context context) {
         super(context);
     }
+
     public NoScrollListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
     public NoScrollListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
+
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int heightMeasureSpec_custom = MeasureSpec.makeMeasureSpec(

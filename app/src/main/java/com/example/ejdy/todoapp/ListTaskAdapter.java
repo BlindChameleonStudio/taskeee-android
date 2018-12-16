@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by Ferdousur Rahman Sarker on 10/23/2017.
+ * base code created by Ferdousur Rahman Sarker on 3/19/2018.
+ * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
 public class ListTaskAdapter extends BaseAdapter {
@@ -21,17 +22,21 @@ public class ListTaskAdapter extends BaseAdapter {
 
     public ListTaskAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         activity = a;
-        data=d;
+        data = d;
     }
+
     public int getCount() {
         return data.size();
     }
+
     public Object getItem(int position) {
         return position;
     }
+
     public long getItemId(int position) {
         return position;
     }
+
     public View getView(int position, View convertView, ViewGroup parent) {
         ListTaskViewHolder holder = null;
         if (convertView == null) {
@@ -45,6 +50,7 @@ public class ListTaskAdapter extends BaseAdapter {
         } else {
             holder = (ListTaskViewHolder) convertView.getTag();
         }
+
         holder.task_image.setId(position);
         holder.task_name.setId(position);
         holder.task_date.setId(position);

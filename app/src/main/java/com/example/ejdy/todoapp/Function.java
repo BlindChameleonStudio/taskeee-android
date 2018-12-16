@@ -5,7 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Ferdousur Rahman Sarker on 3/21/2018.
+ * base code created by Ferdousur Rahman Sarker on 3/19/2018.
+ * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
 public class Function {
@@ -16,7 +17,6 @@ public class Function {
         return format.format(updatedate);
     }
 
-
     public static Calendar Epoch2Calender(String epochSeconds) {
         Date updatedate = new Date(Long.parseLong(epochSeconds));
         Calendar cal = Calendar.getInstance();
@@ -24,5 +24,4 @@ public class Function {
 
         return cal;
     }
-
 }

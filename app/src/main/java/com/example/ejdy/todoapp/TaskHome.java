@@ -18,7 +18,8 @@ import java.util.HashMap;
 
 
 /**
- * Created by Ferdousur Rahman Sarker on 3/16/2018.
+ * base code created by Ferdousur Rahman Sarker on 3/19/2018.
+ * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
 public class TaskHome extends AppCompatActivity {
@@ -38,7 +39,6 @@ public class TaskHome extends AppCompatActivity {
     public static String KEY_TASK = "task";
     public static String KEY_DATE = "date";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,18 +57,14 @@ public class TaskHome extends AppCompatActivity {
         todayText = (TextView) findViewById(R.id.todayText);
         tomorrowText = (TextView) findViewById(R.id.tomorrowText);
         upcomingText = (TextView) findViewById(R.id.upcomingText);
-
     }
 
-
-    public void openAddTask(View v)
-    {
+    public void openAddTask(View v) {
         Intent i = new Intent(this, AddTask.class);
         startActivity(i);
     }
 
-    public void populateData()
-    {
+    public void populateData() {
         mydb = new TaskDBHelper(activity);
         scrollView.setVisibility(View.GONE);
         loader.setVisibility(View.VISIBLE);
@@ -82,12 +78,7 @@ public class TaskHome extends AppCompatActivity {
         super.onResume();
 
         populateData();
-
     }
-
-
-
-
 
     class LoadTask extends AsyncTask<String, Void, String> {
         @Override
@@ -163,13 +154,10 @@ public class TaskHome extends AppCompatActivity {
                 upcomingText.setVisibility(View.GONE);
             }
 
-
             loader.setVisibility(View.GONE);
             scrollView.setVisibility(View.VISIBLE);
         }
     }
-
-
 
     public void loadDataList(Cursor cursor, ArrayList<HashMap<String, String>> dataList)
     {
@@ -186,7 +174,6 @@ public class TaskHome extends AppCompatActivity {
             }
         }
     }
-
 
     public void loadListView(ListView listView, final ArrayList<HashMap<String, String>> dataList)
     {

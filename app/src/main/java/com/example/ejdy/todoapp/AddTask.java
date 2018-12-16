@@ -17,11 +17,11 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by Ferdousur Rahman Sarker on 3/17/2018.
+ * base code created by Ferdousur Rahman Sarker on 3/19/2018.
+ * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
 
     TaskDBHelper mydb;
     DatePickerDialog dpd;
@@ -85,14 +85,11 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 "dd/MM/yyyy", Locale.getDefault());
 
         return dateFormat.toString();
-
     }
-
 
     public void closeAddTask(View v) {
         finish();
     }
-
 
     public void doneAddTask(View v) {
         int errorStep = 0;
@@ -100,7 +97,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         EditText task_date = (EditText) findViewById(R.id.task_date);
         nameFinal = task_name.getText().toString();
         dateFinal = task_date.getText().toString();
-
 
         /* Checking */
         if (nameFinal.trim().length() < 1) {
@@ -112,8 +108,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             errorStep++;
             task_date.setError("Provide a specific date");
         }
-
-
 
         if (errorStep == 0) {
             if (isUpdate) {
@@ -128,7 +122,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         } else {
             Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void deleteTask(View v) {
@@ -157,12 +150,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         task_date.setText(date);
     }
 
-
-
     public void showStartDatePicker(View v) {
         dpd = DatePickerDialog.newInstance(AddTask.this, startYear, startMonth, startDay);
         dpd.setOnDateSetListener(this);
         dpd.show(getFragmentManager(), "startDatepickerdialog");
     }
-
 }
