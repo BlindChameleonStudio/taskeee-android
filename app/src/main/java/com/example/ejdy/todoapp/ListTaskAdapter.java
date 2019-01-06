@@ -16,8 +16,8 @@ import java.util.HashMap;
  * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
-public class ListTaskAdapter extends BaseAdapter {
-    private Activity activity;
+class ListTaskAdapter extends BaseAdapter {
+    private final Activity activity;
     private ArrayList<HashMap<String, String>> data;
 
     public ListTaskAdapter(Activity a, ArrayList<HashMap<String, String>> d) {

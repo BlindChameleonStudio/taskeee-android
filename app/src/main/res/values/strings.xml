@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">ToDo Task</string>
+    <string name="app_name">Taskee</string>
+    <string name="close">Close</string>
+    <string name="create">Create</string>
+    <string name="X">X</string>
+    <string name="add_task">Add Task</string>
+    <string name="update">Update</string>
+    <string name="task">Task</string>
+    <string name="task_date_hint">Task Date</string>
+    <string name="overdue">Overdue</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="upcoming">Upcoming Next</string>
+    <string name="o">o</string>
+    <string name="task_name_default">Task Name here</string>
 </resources>

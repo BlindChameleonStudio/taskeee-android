@@ -5,7 +5,6 @@
     android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="4"
@@ -27,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 android:textColor="#444444"
-                android:text="o"
+                android:text="@string/o"
                 android:textSize="20sp"/>
         </LinearLayout>
 
@@ -38,7 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="10dp">
 
             <TextView
                 android:id="@+id/task_name"
@@ -47,7 +47,7 @@
                 android:visibility="visible"
                 android:textColor="#8D8D8D"
                 android:drawablePadding="10dp"
-                android:text="Task Name here"
+                android:text="@string/task_name_default"
                 android:textSize="16sp"/>
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#676464"
-                android:text="Task Date"
+                android:text="@string/task_date_hint"
                 android:typeface="sans"
                 android:textSize="14sp"/>
         </LinearLayout>
@@ -66,6 +66,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:checked="false"
-            android:clickable="true" />
+            android:clickable="true"
+            android:focusable="true" />
     </LinearLayout>
 </LinearLayout>

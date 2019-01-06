@@ -21,6 +21,7 @@ import java.util.Locale;
  * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
+@SuppressWarnings({"ALL", "deprecation"})
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     TaskDBHelper mydb;
@@ -64,7 +65,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         EditText task_date = (EditText) findViewById(R.id.task_date);
         Button deleteButton = (Button) findViewById(R.id.deleteButton);
         deleteButton.setVisibility(View.VISIBLE);
-        toolbar_task_add_title.setText("Update");
+        toolbar_task_add_title.setText(R.string.update);
         Cursor task = mydb.getDataSpecific(id);
         if (task != null) {
             task.moveToFirst();

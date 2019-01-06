@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1D25">
+    android:background="#1E1D25"
+    tools:ignore="Overdraw">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_task"
         android:layout_alignParentTop="true"
@@ -21,7 +22,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="1"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            tools:ignore="UseCompoundDrawables">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -31,10 +33,11 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="4dp"
                 android:textColor="#ffffff"
-                android:text="Task"
-                android:textSize="18dp"
+                android:text="@string/task"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                />
+                android:paddingStart="16dp"
+                android:paddingEnd="4dp" />
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -42,7 +45,8 @@
                 android:layout_margin="5dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_action_add"
-                android:onClick="openAddTask"/>
+                android:onClick="openAddTask"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -75,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Overdue"
+                android:text="@string/overdue"
                 android:textColor="#CCCCCC"
                 android:textSize="16sp" />
 
@@ -103,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Today"
+                android:text="@string/today"
                 android:textSize="16sp"
                 android:textColor="#CCCCCC"/>
 
@@ -131,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Tomorrow"
+                android:text="@string/tomorrow"
                 android:textSize="16sp"
                 android:textColor="#CCCCCC"/>
 
@@ -159,7 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Upcoming Next"
+                android:text="@string/upcoming"
                 android:textSize="16sp"
                 android:textColor="#CCCCCC"/>
 
