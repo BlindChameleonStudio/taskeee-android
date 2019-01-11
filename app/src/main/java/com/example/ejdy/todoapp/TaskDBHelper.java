@@ -15,7 +15,8 @@ import java.util.Locale;
  * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
-public class TaskDBHelper extends SQLiteOpenHelper {
+@SuppressWarnings("ALL")
+class TaskDBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "ToDoDBHelper.db";
     public static final String CONTACTS_TABLE_NAME = "todo";
@@ -48,17 +49,15 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         return date.getTime();
     }
 
-    public boolean insertContact  (String task, String dateStr) {
-        Date date;
+    public void insertContact  (String task, String dateStr) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("task", task);
         contentValues.put("dateStr", getDate(dateStr));
         db.insert(CONTACTS_TABLE_NAME, null, contentValues);
-        return true;
     }
 
-    public boolean updateContact (String id, String task, String dateStr) {
+    public void updateContact (String id, String task, String dateStr) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -66,54 +65,47 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         contentValues.put("dateStr", getDate(dateStr));
 
         db.update(CONTACTS_TABLE_NAME, contentValues, "id = ? ", new String[] { id } );
-        return true;
     }
 
-    public  boolean deleteContact (String id) {
+    public void deleteContact (String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(CONTACTS_TABLE_NAME,"id = ?", new String[] { id });
-        return true;
     }
 
+    @SuppressWarnings("unused")
     public Cursor getData(){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+" order by id desc", null);
-        return res;
+        return db.rawQuery("select * from "+CONTACTS_TABLE_NAME+" order by id desc", null);
     }
 
     public Cursor getDataSpecific(String id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+" WHERE id = '"+id+"' order by id desc", null);
-        return res;
+        return db.rawQuery("select * from "+CONTACTS_TABLE_NAME+" WHERE id = '"+id+"' order by id desc", null);
     }
 
     public Cursor getDataOverdue(){
         //TODO implement showing of overdue tasks in an app
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
+        return db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
                 " WHERE date(datetime(dateStr / 1000 , 'unixepoch', 'localtime')) < date('now', 'localtime') order by id desc", null);
-        return res;
     }
 
     public Cursor getDataToday(){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
+        return db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
                 " WHERE date(datetime(dateStr / 1000 , 'unixepoch', 'localtime')) = date('now', 'localtime') order by id desc", null);
-        return res;
     }
 
     public Cursor getDataTomorrow(){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
+        return db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
                 " WHERE date(datetime(dateStr / 1000 , 'unixepoch', 'localtime')) = date('now', '+1 day', 'localtime')  order by id desc", null);
-        return res;
     }
 
 
     public Cursor getDataUpcoming(){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
+        return db.rawQuery("select * from "+CONTACTS_TABLE_NAME+
                 " WHERE date(datetime(dateStr / 1000 , 'unixepoch', 'localtime')) > date('now', '+1 day', 'localtime') order by id desc", null);
-        return res;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ejdy.todoapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,22 +23,29 @@ import java.util.HashMap;
  * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
+@SuppressWarnings("ALL")
 public class TaskHome extends AppCompatActivity {
 
-    Activity activity;
-    TaskDBHelper mydb;
-    NoScrollListView taskListOverdue, taskListToday, taskListTomorrow, taskListUpcoming;
-    NestedScrollView scrollView;
-    ProgressBar loader;
-    TextView overdueText,todayText,tomorrowText,upcomingText;
-    ArrayList<HashMap<String, String>> overdueList = new ArrayList<HashMap<String, String>>();
-    ArrayList<HashMap<String, String>> todayList = new ArrayList<HashMap<String, String>>();
-    ArrayList<HashMap<String, String>> tomorrowList = new ArrayList<HashMap<String, String>>();
-    ArrayList<HashMap<String, String>> upcomingList = new ArrayList<HashMap<String, String>>();
+    private Activity activity;
+    private TaskDBHelper mydb;
+    private NoScrollListView taskListOverdue;
+    private NoScrollListView taskListToday;
+    private NoScrollListView taskListTomorrow;
+    private NoScrollListView taskListUpcoming;
+    private NestedScrollView scrollView;
+    private ProgressBar loader;
+    private TextView overdueText;
+    private TextView todayText;
+    private TextView tomorrowText;
+    private TextView upcomingText;
+    private final ArrayList<HashMap<String, String>> overdueList = new ArrayList<>();
+    private final ArrayList<HashMap<String, String>> todayList = new ArrayList<HashMap<String, String>>();
+    private final ArrayList<HashMap<String, String>> tomorrowList = new ArrayList<HashMap<String, String>>();
+    private final ArrayList<HashMap<String, String>> upcomingList = new ArrayList<HashMap<String, String>>();
 
-    public static String KEY_ID = "id";
-    public static String KEY_TASK = "task";
-    public static String KEY_DATE = "date";
+    private static final String KEY_ID = "id";
+    public static final String KEY_TASK = "task";
+    public static final String KEY_DATE = "date";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +72,7 @@ public class TaskHome extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void populateData() {
+    private void populateData() {
         mydb = new TaskDBHelper(activity);
         scrollView.setVisibility(View.GONE);
         loader.setVisibility(View.VISIBLE);
@@ -80,6 +88,7 @@ public class TaskHome extends AppCompatActivity {
         populateData();
     }
 
+    @SuppressLint("StaticFieldLeak")
     class LoadTask extends AsyncTask<String, Void, String> {
         @Override
         protected void onPreExecute() {
@@ -159,23 +168,23 @@ public class TaskHome extends AppCompatActivity {
         }
     }
 
-    public void loadDataList(Cursor cursor, ArrayList<HashMap<String, String>> dataList)
+    private void loadDataList(Cursor cursor, ArrayList<HashMap<String, String>> dataList)
     {
         if(cursor!=null ) {
             cursor.moveToFirst();
-            while (cursor.isAfterLast() == false) {
+            while (!cursor.isAfterLast()) {
 
                 HashMap<String, String> mapToday = new HashMap<String, String>();
-                mapToday.put(KEY_ID, cursor.getString(0).toString());
-                mapToday.put(KEY_TASK, cursor.getString(1).toString());
-                mapToday.put(KEY_DATE, Function.Epoch2DateString(cursor.getString(2).toString(), "dd-MM-yyyy"));
+                mapToday.put(KEY_ID, cursor.getString(0));
+                mapToday.put(KEY_TASK, cursor.getString(1));
+                mapToday.put(KEY_DATE, Function.Epoch2DateString(cursor.getString(2), "dd-MM-yyyy"));
                 dataList.add(mapToday);
                 cursor.moveToNext();
             }
         }
     }
 
-    public void loadListView(ListView listView, final ArrayList<HashMap<String, String>> dataList)
+    private void loadListView(ListView listView, final ArrayList<HashMap<String, String>> dataList)
     {
         ListTaskAdapter adapter = new ListTaskAdapter(activity, dataList);
         listView.setAdapter(adapter);

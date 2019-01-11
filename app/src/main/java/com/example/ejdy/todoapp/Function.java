@@ -1,5 +1,7 @@
 package com.example.ejdy.todoapp;
 
+import android.annotation.SuppressLint;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,18 +11,18 @@ import java.util.Date;
  * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
-public class Function {
+class Function {
 
     public static String Epoch2DateString(String epochSeconds, String formatString) {
-        Date updatedate = new Date(Long.parseLong(epochSeconds));
-        SimpleDateFormat format = new SimpleDateFormat(formatString);
-        return format.format(updatedate);
+        Date updateDate = new Date(Long.parseLong(epochSeconds));
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat(formatString);
+        return format.format(updateDate);
     }
 
     public static Calendar Epoch2Calender(String epochSeconds) {
-        Date updatedate = new Date(Long.parseLong(epochSeconds));
+        Date updateDate = new Date(Long.parseLong(epochSeconds));
         Calendar cal = Calendar.getInstance();
-        cal.setTime(updatedate);
+        cal.setTime(updateDate);
 
         return cal;
     }
