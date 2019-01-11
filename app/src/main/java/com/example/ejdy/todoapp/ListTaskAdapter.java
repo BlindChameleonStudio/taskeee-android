@@ -16,9 +16,10 @@ import java.util.HashMap;
  * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
+@SuppressWarnings("ALL")
 class ListTaskAdapter extends BaseAdapter {
     private final Activity activity;
-    private ArrayList<HashMap<String, String>> data;
+    private final ArrayList<HashMap<String, String>> data;
 
     public ListTaskAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         activity = a;
@@ -38,7 +39,7 @@ class ListTaskAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ListTaskViewHolder holder = null;
+        ListTaskViewHolder holder;
         if (convertView == null) {
             holder = new ListTaskViewHolder();
             convertView = LayoutInflater.from(activity).inflate(
@@ -55,7 +56,7 @@ class ListTaskAdapter extends BaseAdapter {
         holder.task_name.setId(position);
         holder.task_date.setId(position);
 
-        HashMap<String, String> song = new HashMap<String, String>();
+        HashMap<String, String> song = new HashMap<>();
         song = data.get(position);
 
         try{
@@ -69,7 +70,7 @@ class ListTaskAdapter extends BaseAdapter {
             holder.task_image.setText(Html.fromHtml("&#11044;"));
             /* Image */
 
-        }catch(Exception e) {}
+        }catch(Exception ignored) {}
         return convertView;
     }
 }

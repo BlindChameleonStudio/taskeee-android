@@ -23,6 +23,7 @@ import java.util.HashMap;
  * additional features added by Blind Chameleon Studio - all rights reserved
  */
 
+@SuppressWarnings("ALL")
 public class TaskHome extends AppCompatActivity {
 
     private Activity activity;
@@ -37,7 +38,7 @@ public class TaskHome extends AppCompatActivity {
     private TextView todayText;
     private TextView tomorrowText;
     private TextView upcomingText;
-    private final ArrayList<HashMap<String, String>> overdueList = new ArrayList<HashMap<String, String>>();
+    private final ArrayList<HashMap<String, String>> overdueList = new ArrayList<>();
     private final ArrayList<HashMap<String, String>> todayList = new ArrayList<HashMap<String, String>>();
     private final ArrayList<HashMap<String, String>> tomorrowList = new ArrayList<HashMap<String, String>>();
     private final ArrayList<HashMap<String, String>> upcomingList = new ArrayList<HashMap<String, String>>();
@@ -174,9 +175,9 @@ public class TaskHome extends AppCompatActivity {
             while (!cursor.isAfterLast()) {
 
                 HashMap<String, String> mapToday = new HashMap<String, String>();
-                mapToday.put(KEY_ID, cursor.getString(0).toString());
-                mapToday.put(KEY_TASK, cursor.getString(1).toString());
-                mapToday.put(KEY_DATE, Function.Epoch2DateString(cursor.getString(2).toString(), "dd-MM-yyyy"));
+                mapToday.put(KEY_ID, cursor.getString(0));
+                mapToday.put(KEY_TASK, cursor.getString(1));
+                mapToday.put(KEY_DATE, Function.Epoch2DateString(cursor.getString(2), "dd-MM-yyyy"));
                 dataList.add(mapToday);
                 cursor.moveToNext();
             }
